@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrito de Compras | Farmacia Salud Total</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #00796b;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #e0f2f1;
+    }
+    td img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .actions button {
+      background: #e53935;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .total {
+      text-align: right;
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .checkout {
+      text-align: right;
+      margin-top: 20px;
+    }
+    .checkout button {
+      background: #00796b;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      background: #004d40;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Farmacia Salud Total</div>
+    <div class="icons">
+      <a href="/menu" style="color: white; margin-right: 20px;"><i class="fas fa-home"></i> Inicio</a>
+      <a href="/perfil"><i class="fas fa-user" style="color: white; margin-right: 15px;"></i></a>
+      <a href="/carrito"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Carrito de Compras</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      
+    </table>
+
+
+    <div class="checkout">
+      <button>Proceder al Pago</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Farmacia Salud Total | Tel. 55 1234 5678 | contacto@saludtotal.com.mx</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro - Farmacia</title>
+  <style> body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #28df99, #00bcd4); display: flex; justify-content: center; align-items: center; height: 100vh; color: #333; } .register-container { background-color: #ffffff; padding: 2.5rem; border-radius: 20px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); width: 100%; max-width: 450px; animation: fadeIn 0.8s ease-in-out; } @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } } .register-container h2 { text-align: center; margin-bottom: 2rem; color: #00b894; font-size: 1.8rem; letter-spacing: 1px; } .form-group { margin-bottom: 1.3rem; } .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; color: #34495e; } .form-group input { width: 100%; padding: 0.75rem; border: 2px solid #00cec9; border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.3s; } .form-group input:focus { border-color: #0984e3; } .form-group button { width: 100%; padding: 0.9rem; background-color: #00b894; color: #fff; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease; } .form-group button:hover { background-color: #019875; } .form-footer { text-align: center; margin-top: 1rem; font-size: 0.95rem; } .form-footer a { color: #0984e3; text-decoration: none; font-weight: bold; } .form-footer a:hover { text-decoration: underline; } </style>
+</head>
+<body>
+
+  <div class="register-container">
+    <h2>Crear Cuenta en Farmacia Plus</h2>
+    <form action="/registro" method="POST" onsubmit="return validarFormulario()">
+      <div class="form-group">
+        <label for="name">Nombre Completo</label>
+        <input type="text" id="name" name="nombre" required maxlength="50" />
+      </div>
+
+      <div class="form-group">
+        <label for="usuario">Correo Electrónico o Teléfono</label>
+        <input type="text" id="usuario" name="usuario" required maxlength="50" placeholder="Correo electrónico o teléfono" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="contra" required maxlength="50" />
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirmar Contraseña</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required maxlength="50" />
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Registrarse</button>
+      </div>
+    </form>
+    <div class="form-footer">
+      <p>¿Ya tienes una cuenta? <a href="/sesion">Inicia sesión</a></p>
+    </div>
+  </div>
+
+  <script>
+    function validarFormulario() {
+      const nombre = document.getElementById('name').value.trim();
+      const usuario = document.getElementById('usuario').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+      // Validar longitud máxima 50 caracteres
+      if (nombre.length > 50) {
+        alert('El nombre no puede tener más de 50 caracteres.');
+        return false;
+      }
+      if (usuario.length > 50) {
+        alert('El correo o teléfono no puede tener más de 50 caracteres.');
+        return false;
+      }
+      if (password.length > 50) {
+        alert('La contraseña no puede tener más de 50 caracteres.');
+        return false;
+      }
+
+      // Validar que usuario sea correo o teléfono válido
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const telefonoRegex = /^\d{10,15}$/;
+
+      if (!emailRegex.test(usuario) && !telefonoRegex.test(usuario)) {
+        alert('Por favor ingresa un correo electrónico válido o un número telefónico válido (solo dígitos, entre 10 y 15 números).');
+        return false;
+      }
+
+      // Validar contraseñas coinciden
+      if (password !== confirmPassword) {
+        alert('Las contraseñas no coinciden.');
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+
+</body>
+</html>

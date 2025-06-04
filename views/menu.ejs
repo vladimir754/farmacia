@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmacia Salud Total</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #00796b;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .search-bar input {
+      padding: 8px;
+      width: 250px;
+      border-radius: 5px;
+      border: none;
+    }
+    nav {
+      background: #004d40;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+    .category-list {
+      margin-bottom: 20px;
+    }
+    .category-list h2 {
+      margin-bottom: 10px;
+    }
+    .category-list ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .category-list li {
+      background: #e0f2f1;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .product {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .product img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+    .product p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    .product button {
+      background: #00796b;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      background: #004d40;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Farmacia Salud Total</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar medicamentos, vitaminas...">
+    </div>
+    <div class="icons">
+      <a href="/perfil"><i class="fas fa-user" style="color: white; margin-right: 15px;"></i></a>
+      <a href="/carrito"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#">Medicamentos</a>
+    <a href="#">Vitaminas</a>
+    <a href="#">Cuidado personal</a>
+    <a href="#">Promociones</a>
+    <a href="/contacto">Contacto</a>
+  </nav>
+
+  <div class="container">
+    <section class="category-list">
+      <h2>Categorías</h2>
+      <ul>
+        <li>Analgésicos</li>
+        <li>Antibióticos</li>
+        <li>Antigripales</li>
+        <li>Antiinflamatorios</li>
+        <li>Vitaminas</li>
+        <li>Suplementos</li>
+      </ul>
+    </section>
+
+  <footer>
+    <p>&copy; 2025 Farmacia Salud Total | Tel. 72 9805 4028 | contacto@saludtotal.com.mx</p>
+  </footer>
+</body>
+</html>

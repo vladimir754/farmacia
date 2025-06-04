@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Perfil | Farmacia Salud Total</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e0f2f1;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #00796b;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .icons a, .icons form {
+      margin-left: 15px;
+    }
+
+    .icons a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .profile-card {
+      background: white;
+      max-width: 500px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile-card h2 {
+      margin-bottom: 25px;
+      color: #004d40;
+      font-size: 24px;
+    }
+
+    .profile-info {
+      text-align: left;
+      margin-bottom: 25px;
+    }
+
+    .profile-info p {
+      font-size: 16px;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      color: #333;
+    }
+
+    .profile-info i {
+      color: #00796b;
+      margin-right: 10px;
+      min-width: 20px;
+    }
+
+    .edit-btn button {
+      background: #00796b;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .edit-btn button:hover {
+      background: #004d40;
+    }
+
+    footer {
+      background: #004d40;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Farmacia Salud Total</div>
+    <div class="icons">
+      <a href="/menu"><i class="fas fa-home"></i></a>
+      <a href="/perfil"><i class="fas fa-user"></i></a>
+      <a href="/carrito"><i class="fas fa-shopping-cart"></i></a>
+      <form action="/logout" method="POST" style="display:inline;">
+        <button class="logout-btn" type="submit" title="Cerrar sesión">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <div class="profile-card">
+      <h2>Mi Perfil</h2>
+      <img src="/imagenes/" alt="">
+      <p><strong>Nombre:</strong> <%= usuario.nombre %></p>
+      <p><strong>Correo:</strong> <%= usuario.correo %></p>
+
+      <div class="edit-btn">
+        <button onclick="window.location.href='/editar-perfil'">
+          <i class="fas fa-edit"></i> Editar Perfil
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Farmacia Salud Total | Tel. 72 9805 4028 | contacto@saludtotal.com.mx</p>
+  </footer>
+</body>
+</html>

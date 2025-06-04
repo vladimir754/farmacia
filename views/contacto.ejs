@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contáctanos | Farmacia Salud Total</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #00796b;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .contact-info {
+      margin-bottom: 30px;
+    }
+    .contact-info p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .contact-info i {
+      color: #00796b;
+      margin-right: 10px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      background: #00796b;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+    footer {
+      background: #004d40;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Farmacia Salud Total</div>
+    <div class="icons">
+      <a href="/menu" style="color: white; margin-right: 20px;"><i class="fas fa-home"></i> Inicio</a>
+      <a href="/perfil"><i class="fas fa-user" style="color: white; margin-right: 15px;"></i></a>
+      <a href="/carrito"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Contáctanos</h2>
+    
+    <div class="contact-info">
+      <p><i class="fas fa-phone"></i> Teléfono: 72 9805 4038</p>
+      <p><i class="fas fa-envelope"></i> Correo: contacto@saludtotal.com.mx</p>
+      <p><i class="fas fa-map-marker-alt"></i> Dirección: Av. Salud #123, Col. Bienestar, CDMX</p>
+      <p><i class="fas fa-clock"></i> Horario: Lunes a Sábado de 9:00am a 9:00pm</p>
+    </div>
+
+    <form action="/enviar-contacto" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <input type="email" name="correo" placeholder="Tu correo electrónico" required />
+      <input type="text" name="asunto" placeholder="Asunto" required />
+      <textarea name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+      <button type="submit">Enviar Mensaje</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Farmacia Salud Total | Tel. 72 9805 4028 | contacto@saludtotal.com.mx</p>
+  </footer>
+</body>
+</html>

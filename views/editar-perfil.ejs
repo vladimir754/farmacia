@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Perfil</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    .form-container h2 {
+      margin-bottom: 20px;
+      color: #00796b;
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background: #00796b;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Editar Perfil</h2>
+    <form action="/actualizar-perfil" method="POST">
+      <input type="text" name="nombre" placeholder="Nombre" value="<%= usuario.nombre %>" required />
+      <input type="email" name="correo" placeholder="Correo" value="<%= usuario.correo %>" required />
+      <input type="password" name="contra" placeholder="Nueva contraseña" value="<%= usuario.contra %>" required />
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </div>
+</body>
+</html>
