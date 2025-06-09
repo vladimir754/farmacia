@@ -145,6 +145,26 @@ app.post('/login', (req, res) => {
   });
 });
 
+
+app.post('/enviar-contacto', (req, res) => {
+  const { nombre, correo, asunto, mensaje } = req.body;
+
+  const sql = 'INSERT INTO contacto (nombre, correo, asunto, mensaje) VALUES (?, ?, ?, ?)';
+  db.query(sql, [nombre, correo, asunto, mensaje], (err, result) => {
+    if (err) {
+      console.error('Error al guardar contacto:', err);
+      return res.status(500).send('Error al enviar el mensaje.');
+    }
+
+    res.render('contacto-exito');
+
+
+    // También puedes hacer: res.redirect('/contacto');
+  });
+});
+
+
+
 const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Escuchando en http://localhost:${PORT}/sesion`);
