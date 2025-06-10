@@ -126,5 +126,134 @@
   <footer>
     <p>&copy; 2025 Farmacia Salud Total | Tel. 55 1234 5678 | contacto@saludtotal.com.mx</p>
   </footer>
+  <!-- ...existing code... -->
+<script>
+  // Animación de entrada para el contenedor
+  const container = document.querySelector('.container');
+  container.style.opacity = 0;
+  container.style.transform = 'translateY(40px)';
+  setTimeout(() => {
+    container.style.transition = 'all 0.7s cubic-bezier(.68,-0.55,.27,1.55)';
+    container.style.opacity = 1;
+    container.style.transform = 'translateY(0)';
+  }, 200);
+
+  // Efecto hover en filas de la tabla
+  document.querySelectorAll('table tr').forEach((row, i) => {
+    if (i === 0) return; // Saltar encabezado
+    row.addEventListener('mouseenter', () => {
+      row.style.background = '#e0f7fa';
+      row.style.transition = 'background 0.3s';
+    });
+    row.addEventListener('mouseleave', () => {
+      row.style.background = '';
+    });
+  });
+
+  // Efecto visual al eliminar producto (canvas animado)
+  document.querySelectorAll('.actions button').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const td = btn.closest('td');
+      const canvas = document.createElement('canvas');
+      canvas.width = 50;
+      canvas.height = 50;
+      canvas.style.position = 'absolute';
+      canvas.style.left = btn.offsetLeft + 'px';
+      canvas.style.top = btn.offsetTop + 'px';
+      td.style.position = 'relative';
+      td.appendChild(canvas);
+
+      // Dibuja una X animada
+      const ctx = canvas.getContext('2d');
+      ctx.strokeStyle = '#e53935';
+      ctx.lineWidth = 5;
+      let progress = 0;
+      function animateX() {
+        ctx.clearRect(0, 0, 50, 50);
+        ctx.beginPath();
+        ctx.moveTo(10, 10);
+        ctx.lineTo(10 + 30 * progress, 10 + 30 * progress);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(40, 10);
+        ctx.lineTo(40 - 30 * progress, 10 + 30 * progress);
+        ctx.stroke();
+        if (progress < 1) {
+          progress += 0.08;
+          requestAnimationFrame(animateX);
+        } else {
+          setTimeout(() => {
+            canvas.remove();
+            // Aquí podrías eliminar la fila del producto si tienes lógica de backend/frontend
+            td.closest('tr').style.opacity = 0.3;
+          }, 350);
+        }
+      }
+      animateX();
+    });
+  });
+
+  // Animación de botón de pago
+  const payBtn = document.querySelector('.checkout button');
+  payBtn.addEventListener('mouseenter', () => {
+    payBtn.style.transform = 'scale(1.05)';
+    payBtn.style.boxShadow = '0 4px 16px rgba(0,121,107,0.13)';
+  });
+  payBtn.addEventListener('mouseleave', () => {
+    payBtn.style.transform = 'scale(1)';
+    payBtn.style.boxShadow = 'none';
+  });
+
+  // Notificación canvas al proceder al pago
+  payBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const notif = document.createElement('canvas');
+    notif.width = 260;
+    notif.height = 60;
+    notif.style.position = 'fixed';
+    notif.style.top = '30px';
+    notif.style.right = '30px';
+    notif.style.zIndex = 9999;
+    notif.style.boxShadow = '0 4px 16px rgba(0,0,0,0.15)';
+    notif.style.borderRadius = '12px';
+    document.body.appendChild(notif);
+
+    const ctx = notif.getContext('2d');
+    // Fondo
+    ctx.fillStyle = '#00796b';
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(0, 0, 260, 60, 12);
+    ctx.fill();
+    ctx.stroke();
+
+    // Dibuja un check animado
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 5;
+    let progress = 0;
+    function animateCheck() {
+      ctx.clearRect(80, 20, 40, 30);
+      ctx.beginPath();
+      ctx.moveTo(90, 40);
+      ctx.lineTo(100, 50 - 10 * (1 - progress));
+      ctx.lineTo(120, 30 + 10 * progress);
+      ctx.stroke();
+      if (progress < 1) {
+        progress += 0.08;
+        requestAnimationFrame(animateCheck);
+      }
+    }
+    animateCheck();
+
+    // Texto
+    ctx.font = 'bold 18px Arial';
+    ctx.fillStyle = '#fff';
+    ctx.fillText('¡Pago realizado!', 140, 38);
+
+    setTimeout(() => notif.remove(), 1800);
+  });
+</script>
 </body>
 </html>

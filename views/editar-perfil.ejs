@@ -44,15 +44,105 @@
     }
   </style>
 </head>
+
+</html>
+<!-- ...existing code... -->
 <body>
   <div class="form-container">
     <h2>Editar Perfil</h2>
-    <form action="/actualizar-perfil" method="POST">
+    <form action="/actualizar-perfil" method="POST" id="perfilForm">
       <input type="text" name="nombre" placeholder="Nombre" value="<%= usuario.nombre %>" required />
       <input type="email" name="correo" placeholder="Correo" value="<%= usuario.correo %>" required />
-      <input type="password" name="contra" placeholder="Nueva contraseña" value="<%= usuario.contra %>" required />
+      <div style="position:relative;">
+        <input type="password" name="contra" id="contra" placeholder="Nueva contraseña" value="<%= usuario.contra %>" required />
+      </div>
       <button type="submit">Guardar Cambios</button>
     </form>
   </div>
+  <script>
+    // Mostrar/ocultar contraseña con canvas
+    function drawEye(canvas, closed = false) {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, 40, 40);
+
+      // Ojo base
+      ctx.strokeStyle = '#00796b';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.ellipse(20, 20, 15, 9, 0, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      // Pupila
+      ctx.beginPath();
+      ctx.arc(20, 20, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = '#00796b';
+      ctx.fill();
+
+      // Línea de cerrado
+      if (closed) {
+        ctx.strokeStyle = '#e17055';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(10, 30);
+        ctx.lineTo(30, 10);
+        ctx.stroke();
+      }
+    }
+
+    (function() {
+      const passwordInput = document.getElementById('contra');
+      if (!passwordInput) return;
+      if (passwordInput.parentNode.querySelector('.password-toggle')) return;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 40;
+      canvas.height = 40;
+      canvas.className = 'password-toggle';
+      canvas.style.position = 'absolute';
+      canvas.style.right = '8px';
+      canvas.style.top = '50%';
+      canvas.style.transform = 'translateY(-50%)';
+      canvas.style.cursor = 'pointer';
+      canvas.style.zIndex = 2;
+      drawEye(canvas, false);
+
+      passwordInput.parentNode.style.position = 'relative';
+      passwordInput.parentNode.appendChild(canvas);
+
+      let isVisible = false;
+      canvas.addEventListener('click', () => {
+        isVisible = !isVisible;
+        passwordInput.type = isVisible ? 'text' : 'password';
+        drawEye(canvas, isVisible);
+      });
+    })();
+
+    // Animación de entrada para el formulario
+    const form = document.querySelector('.form-container');
+    form.style.opacity = 0;
+    form.style.transform = 'translateY(40px)';
+    setTimeout(() => {
+      form.style.transition = 'all 0.7s cubic-bezier(.68,-0.55,.27,1.55)';
+      form.style.opacity = 1;
+      form.style.transform = 'translateY(0)';
+    }, 200);
+
+    // Animación de botón al hacer hover
+    const btn = document.querySelector('button[type="submit"]');
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transform = 'scale(1.04)';
+      btn.style.boxShadow = '0 4px 16px rgba(0,121,107,0.13)';
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'scale(1)';
+      btn.style.boxShadow = 'none';
+    });
+
+    // Validación visual en tiempo real para el correo
+    document.querySelector('input[name="correo"]').addEventListener('input', function() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      this.style.borderColor = emailRegex.test(this.value.trim()) ? '#00796b' : '#e17055';
+    });
+  </script>
 </body>
-</html>
+<!-- ...existing code... -->

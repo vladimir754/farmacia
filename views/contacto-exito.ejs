@@ -51,12 +51,84 @@
     }
   </style>
 </head>
+<!-- ...existing code... -->
 <body>
   <div class="mensaje-container">
-    <i class="fas fa-check-circle"></i>
+    <div id="canvas-check" style="display:inline-block; margin-bottom:20px;"></div>
     <h1>¡Mensaje Enviado!</h1>
     <p>Gracias por contactarte con <strong>Farmacia Salud Total</strong>.<br>Nos comunicaremos contigo pronto.</p>
     <a href="/menu"><i class="fas fa-arrow-left"></i> Volver al Menú Principal</a>
   </div>
+  <script>
+    // Animación de check con canvas
+    (function() {
+      const cont = document.getElementById('canvas-check');
+      const canvas = document.createElement('canvas');
+      canvas.width = 80;
+      canvas.height = 80;
+      cont.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+
+      // Círculo animado
+      let progress = 0;
+      function drawCircle() {
+        ctx.clearRect(0, 0, 80, 80);
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = '#00796b';
+        ctx.beginPath();
+        ctx.arc(40, 40, 32, -Math.PI/2, -Math.PI/2 + 2 * Math.PI * progress);
+        ctx.stroke();
+        if (progress < 1) {
+          progress += 0.04;
+          requestAnimationFrame(drawCircle);
+        } else {
+          drawCheck();
+        }
+      }
+
+      // Check animado
+      function drawCheck() {
+        let checkProgress = 0;
+        function animateCheck() {
+          ctx.lineWidth = 6;
+          ctx.strokeStyle = '#00796b';
+          ctx.beginPath();
+          ctx.moveTo(26, 44);
+          ctx.lineTo(36, 56 * checkProgress + 44 * (1 - checkProgress));
+          ctx.lineTo(58, 28 * checkProgress + 56 * (1 - checkProgress));
+          ctx.stroke();
+          if (checkProgress < 1) {
+            checkProgress += 0.08;
+            requestAnimationFrame(animateCheck);
+          }
+        }
+        animateCheck();
+      }
+
+      drawCircle();
+    })();
+
+    // Animación de entrada para el mensaje
+    const mensaje = document.querySelector('.mensaje-container');
+    mensaje.style.opacity = 0;
+    mensaje.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      mensaje.style.transition = 'all 0.7s cubic-bezier(.68,-0.55,.27,1.55)';
+      mensaje.style.opacity = 1;
+      mensaje.style.transform = 'scale(1)';
+    }, 200);
+
+    // Animación de botón al hacer hover
+    const btn = document.querySelector('.mensaje-container a');
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transform = 'scale(1.05)';
+      btn.style.boxShadow = '0 4px 16px rgba(0,121,107,0.13)';
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'scale(1)';
+      btn.style.boxShadow = 'none';
+    });
+  </script>
 </body>
+<!-- ...existing code... -->
 </html>
