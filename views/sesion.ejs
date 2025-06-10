@@ -103,6 +103,31 @@
     .form-footer a:hover {
       text-decoration: underline;
     }
+    .password-toggle {
+    position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: filter 0.2s;
+  pointer-events: auto;
+  }
+  .password-toggle:hover {
+    filter: brightness(1.2);
+  }
+  .form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .form-group input [type="password"] {
+    padding-right: 50px; /* Espacio para el canvas del ojo */
+  }
   </style>
 </head>
 <body>
@@ -134,32 +159,114 @@
     </div>
   </div>
 
-  <script>
-    function validarFormulario() {
-      const usuario = document.getElementById('usuario').value.trim();
-      const password = document.getElementById('password').value.trim();
+ <script>
+  function validarFormulario() {
+    const usuario = document.getElementById('usuario').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-      const telefonoRegex = /^\d{10}$/;
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const telefonoRegex = /^\d{10}$/;
 
-      if (usuario.length > 50) {
-        alert('El campo usuario no puede exceder los 50 caracteres.');
-        return false;
-      }
-
-      if (!emailRegex.test(usuario) && !telefonoRegex.test(usuario)) {
-        alert('Por favor, ingresa un correo electrónico válido o un número de teléfono de 10 dígitos.');
-        return false;
-      }
-
-      if (password.length > 50) {
-        alert('La contraseña no puede exceder los 50 caracteres.');
-        return false;
-      }
-
-      return true;
+    if (usuario.length > 50) {
+      alert('El campo usuario no puede exceder los 50 caracteres.');
+      return false;
     }
-  </script>
+
+    if (!emailRegex.test(usuario) && !telefonoRegex.test(usuario)) {
+      alert('Por favor, ingresa un correo electrónico válido o un número de teléfono de 10 dígitos.');
+      return false;
+    }
+
+    if (password.length > 50) {
+      alert('La contraseña no puede exceder los 50 caracteres.');
+      return false;
+    }
+
+    return true;
+  }
+
+  // Función para dibujar el icono de ojo en canvas
+  function drawEye(canvas, closed = false) {
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 40, 40);
+
+    // Ojo base
+    ctx.strokeStyle = '#00b894';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.ellipse(20, 20, 15, 9, 0, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    // Pupila
+    ctx.beginPath();
+    ctx.arc(20, 20, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#00b894';
+    ctx.fill();
+
+    // Línea de cerrado
+    if (closed) {
+      ctx.strokeStyle = '#e17055';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(10, 30);
+      ctx.lineTo(30, 10);
+      ctx.stroke();
+    }
+  }
+
+  // Mostrar/ocultar contraseña con canvas
+  (function() {
+    const passwordInput = document.getElementById('password');
+    if (passwordInput.parentNode.querySelector('.password-toggle')) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 40;
+    canvas.height = 40;
+    canvas.className = 'password-toggle';
+    drawEye(canvas, false);
+
+    passwordInput.parentNode.style.position = 'relative';
+    passwordInput.parentNode.appendChild(canvas);
+
+    let isVisible = false;
+    canvas.addEventListener('click', () => {
+      isVisible = !isVisible;
+      passwordInput.type = isVisible ? 'text' : 'password';
+      drawEye(canvas, isVisible);
+    });
+  })();
+
+  // Validación en tiempo real para usuario
+  document.getElementById('usuario').addEventListener('input', function() {
+    const usuario = this.value.trim();
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const telefonoRegex = /^\d{10}$/;
+    this.style.borderColor = (emailRegex.test(usuario) || telefonoRegex.test(usuario)) ? '#00b894' : '#e17055';
+  });
+
+  // Animación de botón al hacer hover
+  const btn = document.querySelector('.form-group button');
+  btn.addEventListener('mouseenter', () => {
+    btn.style.transform = 'scale(1.05)';
+    btn.style.boxShadow = '0 4px 16px rgba(0,184,148,0.2)';
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'scale(1)';
+    btn.style.boxShadow = 'none';
+  });
+
+  // Animación de entrada para los campos del formulario
+  document.querySelectorAll('.form-group').forEach((el, i) => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(30px)';
+    setTimeout(() => {
+      el.style.transition = 'all 0.6s cubic-bezier(.68,-0.55,.27,1.55)';
+      el.style.opacity = 1;
+      el.style.transform = 'translateY(0)';
+    }, 200 + i * 120);
+  });
+</script>
+  
 
 </body>
 </html>

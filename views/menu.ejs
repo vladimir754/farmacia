@@ -143,5 +143,91 @@
   <footer>
     <p>&copy; 2025 Farmacia Salud Total | Tel. 72 9805 4028 | contacto@saludtotal.com.mx</p>
   </footer>
+  <script>
+  // Filtro de búsqueda en categorías y productos
+  document.querySelector('.search-bar input').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    // Filtrar categorías
+    document.querySelectorAll('.category-list li').forEach(li => {
+      li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+    });
+    // Filtrar productos (si tienes productos dinámicos)
+    document.querySelectorAll('.product').forEach(prod => {
+      prod.style.display = prod.textContent.toLowerCase().includes(query) ? '' : 'none';
+    });
+  });
+
+  // Animación de hover en productos y categorías
+  document.querySelectorAll('.product').forEach(prod => {
+    prod.addEventListener('mouseenter', () => {
+      prod.style.transform = 'scale(1.04)';
+      prod.style.boxShadow = '0 8px 24px rgba(0,0,0,0.13)';
+    });
+    prod.addEventListener('mouseleave', () => {
+      prod.style.transform = 'scale(1)';
+      prod.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+    });
+  });
+  document.querySelectorAll('.category-list li').forEach(cat => {
+    cat.addEventListener('mouseenter', () => {
+      cat.style.background = '#b2dfdb';
+      cat.style.transform = 'scale(1.07)';
+    });
+    cat.addEventListener('mouseleave', () => {
+      cat.style.background = '#e0f2f1';
+      cat.style.transform = 'scale(1)';
+    });
+    // Scroll suave a productos de la categoría (si existieran)
+    cat.addEventListener('click', () => {
+      window.scrollTo({ top: document.querySelector('.product-grid')?.offsetTop || 0, behavior: 'smooth' });
+    });
+  });
+
+  // Notificación al agregar al carrito (simulada)
+  document.querySelectorAll('.product button').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const notif = document.createElement('div');
+      notif.textContent = '¡Producto agregado al carrito!';
+      notif.style.position = 'fixed';
+      notif.style.top = '30px';
+      notif.style.right = '30px';
+      notif.style.background = '#00b894';
+      notif.style.color = '#fff';
+      notif.style.padding = '15px 25px';
+      notif.style.borderRadius = '8px';
+      notif.style.boxShadow = '0 4px 16px rgba(0,0,0,0.15)';
+      notif.style.zIndex = 9999;
+      notif.style.fontWeight = 'bold';
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 1700);
+    });
+  });
+
+  // Modo oscuro
+  const darkBtn = document.createElement('button');
+  darkBtn.textContent = '🌙';
+  darkBtn.title = 'Modo oscuro';
+  darkBtn.style.background = 'none';
+  darkBtn.style.border = 'none';
+  darkBtn.style.fontSize = '1.5em';
+  darkBtn.style.cursor = 'pointer';
+  darkBtn.style.marginLeft = '10px';
+  document.querySelector('.icons').appendChild(darkBtn);
+
+  let dark = false;
+  darkBtn.addEventListener('click', () => {
+    dark = !dark;
+    document.body.style.background = dark ? '#222' : '#f4f4f4';
+    document.querySelector('header').style.background = dark ? '#222' : '#00796b';
+    document.querySelector('nav').style.background = dark ? '#111' : '#004d40';
+    document.querySelector('footer').style.background = dark ? '#111' : '#004d40';
+    document.querySelectorAll('.product').forEach(p => p.style.background = dark ? '#333' : '#fff');
+    document.querySelectorAll('.category-list li').forEach(li => li.style.background = dark ? '#263238' : '#e0f2f1');
+    document.querySelectorAll('.product, .category-list li').forEach(el => el.style.color = dark ? '#fff' : '#333');
+    document.querySelectorAll('.logo, .icons a, .form-footer, nav a, footer').forEach(el => el.style.color = dark ? '#fff' : '');
+    darkBtn.textContent = dark ? '☀️' : '🌙';
+  });
+</script>
 </body>
 </html>
