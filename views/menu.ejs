@@ -11,6 +11,7 @@
       margin: 0;
       padding: 0;
       background: #f4f4f4;
+      transition: background 0.4s;
     }
     header {
       background: #00796b;
@@ -19,16 +20,24 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.4s;
     }
     .logo {
       font-size: 1.5em;
       font-weight: bold;
+      letter-spacing: 1px;
     }
     .search-bar input {
-      padding: 8px;
+      padding: 8px 12px;
       width: 250px;
       border-radius: 5px;
       border: none;
+      font-size: 1em;
+      transition: box-shadow 0.2s;
+    }
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #00b894;
     }
     nav {
       background: #004d40;
@@ -36,11 +45,19 @@
       display: flex;
       justify-content: center;
       gap: 15px;
+      transition: background 0.4s;
     }
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover {
+      background: #00b894;
+      color: #fff;
     }
     .container {
       max-width: 1200px;
@@ -59,51 +76,186 @@
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
+      justify-content: center;
     }
     .category-list li {
       background: #e0f2f1;
-      padding: 10px 15px;
-      border-radius: 5px;
+      padding: 12px 22px;
+      border-radius: 30px;
       cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      font-weight: 600;
+      font-size: 1.08em;
+      box-shadow: 0 2px 8px rgba(0,121,107,0.07);
+      margin-bottom: 5px;
+      border: 2px solid transparent;
+    }
+    .category-list li.active,
+    .category-list li:hover {
+      background: #00b894;
+      color: #fff;
+      transform: scale(1.12);
+      box-shadow: 0 6px 18px rgba(0,184,148,0.13);
+      border: 2px solid #019875;
     }
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+      margin-top: 20px;
     }
     .product {
-      background: white;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: linear-gradient(135deg, #e0f7fa 60%, #fff 100%);
+      border-radius: 16px;
+      padding: 22px 18px 18px 18px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
       text-align: center;
+      transition: box-shadow 0.25s, transform 0.22s, background 0.4s, color 0.4s;
+      position: relative;
+      border: 1.5px solid #b2dfdb;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .product img {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       object-fit: contain;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 2px 8px rgba(0,184,148,0.09));
+      transition: filter 0.2s;
+      border-radius: 50%;
+      background: #fff;
+      padding: 8px;
+      border: 2px solid #b2dfdb;
     }
     .product h3 {
       margin: 10px 0 5px;
+      font-size: 1.18em;
+      color: #00796b;
+      font-weight: bold;
+      letter-spacing: 0.5px;
     }
     .product p {
       margin: 5px 0;
-      font-size: 14px;
+      font-size: 15px;
+      color: #444;
     }
     .product button {
-      background: #00796b;
+      background: linear-gradient(90deg, #00b894 60%, #019875 100%);
       color: white;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
+      padding: 11px 0;
+      border-radius: 8px;
       cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 1em;
+      box-shadow: 0 2px 8px rgba(0,184,148,0.09);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      width: 100%;
+      letter-spacing: 0.5px;
     }
-    footer {
-      background: #004d40;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
+    .product button:hover {
+      background: linear-gradient(90deg, #019875 60%, #00b894 100%);
+      transform: scale(1.07);
+      box-shadow: 0 6px 18px rgba(0,184,148,0.13);
+    }
+    .product .precio {
+      font-size: 1.08em;
+      color: #019875;
+      font-weight: bold;
+      margin: 8px 0 0 0;
+    }
+    .product .cientifico {
+      font-size: 0.97em;
+      color: #009688;
+      margin-bottom: 3px;
+    }
+    .product .desc {
+      font-size: 0.97em;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    .product:hover {
+      box-shadow: 0 8px 32px rgba(0,184,148,0.13);
+      background: linear-gradient(135deg, #b2dfdb 60%, #fff 100%);
+      border-color: #00b894;
+    }
+    .product-grid h2 {
+      grid-column: 1/-1;
+      text-align: left;
+      color: #00796b;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+    .notif {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: #00b894;
+      color: #fff;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      z-index: 9999;
+      font-weight: bold;
+      opacity: 0;
+      animation: notifIn 0.4s forwards;
+      font-size: 1.1em;
+      letter-spacing: 0.5px;
+    }
+    @keyframes notifIn {
+      to { opacity: 1; }
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      .category-list ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      .container {
+        padding: 8px;
+      }
+    }
+    /* Modo oscuro */
+    body.dark {
+      background: #222;
+    }
+    body.dark header {
+      background: #222;
+    }
+    body.dark nav {
+      background: #111;
+    }
+    body.dark footer {
+      background: #111;
+    }
+    body.dark .product {
+      background: #333;
+      color: #fff;
+    }
+    body.dark .category-list li {
+      background: #263238;
+      color: #fff;
+    }
+    body.dark .category-list li.active,
+    body.dark .category-list li:hover {
+      background: #00b894;
+      color: #fff;
+    }
+    body.dark .logo,
+    body.dark .icons a,
+    body.dark .form-footer,
+    body.dark nav a,
+    body.dark footer {
+      color: #fff !important;
     }
   </style>
 </head>
@@ -111,11 +263,12 @@
   <header>
     <div class="logo">Farmacia Salud Total</div>
     <div class="search-bar">
-      <input type="text" placeholder="Buscar medicamentos, vitaminas...">
+      <input type="text" placeholder="Buscar medicamentos, vitaminas..." id="buscador">
     </div>
     <div class="icons">
       <a href="/perfil"><i class="fas fa-user" style="color: white; margin-right: 15px;"></i></a>
       <a href="/carrito"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+      <button id="darkBtn" title="Modo oscuro" style="background:none;border:none;font-size:1.5em;cursor:pointer;margin-left:10px;">🌙</button>
     </div>
   </header>
 
@@ -131,103 +284,258 @@
     <section class="category-list">
       <h2>Categorías</h2>
       <ul>
-        <li>Analgésicos</li>
-        <li>Antibióticos</li>
-        <li>Antigripales</li>
-        <li>Antiinflamatorios</li>
-        <li>Vitaminas</li>
-        <li>Suplementos</li>
+        <li data-cat="analgesicos" class="active">Analgésicos</li>
+        <li data-cat="antibioticos">Antibióticos</li>
+        <li data-cat="antigripales">Antigripales</li>
+        <li data-cat="antiinflamatorios">Antiinflamatorios</li>
+        <li data-cat="vitaminas">Vitaminas</li>
+        <li data-cat="suplementos">Suplementos</li>
       </ul>
     </section>
+
+ <h2>Analgésicos</h2>
+  <div class="product">
+    <img src="https://images.alamy.com/stock-photo/paracetamol-tablets-in-a-blister-pack-two-tablets-removed-349195132.jpg" alt="Paracetamol">
+    <h3>Paracetamol</h3>
+    <p><strong>Nombre científico:</strong> Acetaminofén</p>
+    <p>Analgésico y antipirético para fiebre y dolor leve a moderado.</p>
+    <p><strong>Precio:</strong> $25.00</p>
+    <button>Agregar al carrito</button>
+  </div>
+  <div class="product">
+    <img src="https://images.alamy.com/stock-photo/blister-pack-containing-medical-pills-reflected-on-white-background-366061034.jpg" alt="Paracetamol variante">
+    <h3>Paracetamol 2</h3>
+    <p><strong>Nombre científico:</strong> Acetaminofén</p>
+    <p>Analgésico y antipirético alternativa.</p>
+    <p><strong>Precio:</strong> $25.00</p>
+    <button>Agregar al carrito</button>
+  </div>
+  <div class="product">
+    <img src="https://images.alamy.com/stock-photo/paracetamol-blister-pack-with-white-tablets-332106045.jpg" alt="Paracetamol blíster blanco">
+    <h3>Paracetamol 3</h3>
+    <p><strong>Nombre científico:</strong> Acetaminofén</p>
+    <p>Analgésico, envase blanco.</p>
+    <p><strong>Precio:</strong> $25.00</p>
+    <button>Agregar al carrito</button>
+  </div>
+  <div class="product">
+    <img src="https://images.alamy.com/stock-photo/two-paracetamol-headache-tablets-taken-from-a-blister-pack-30433239.jpg" alt="Tabletas de Paracetamol">
+    <h3>Paracetamol 4</h3>
+    <p><strong>Nombre científico:</strong> Acetaminofén</p>
+    <p>Dosis individual.</p>
+    <p><strong>Precio:</strong> $25.00</p>
+    <button>Agregar al carrito</button>
+  </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046876.png" alt="Diclofenaco">
+      <h3>Diclofenaco</h3>
+      <p><strong>Nombre científico:</strong> Diclofenac</p>
+      <p>Alivio de dolor e inflamación en músculos y articulaciones.</p>
+      <p><strong>Precio:</strong> $28.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046846.png" alt="Metamizol">
+      <h3>Metamizol</h3>
+      <p><strong>Nombre científico:</strong> Dipirona</p>
+      <p>Alivio de dolor intenso y fiebre alta.</p>
+      <p><strong>Precio:</strong> $27.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <!-- ...continúa con imágenes alusivas para los demás productos... -->
+  </section>
+
+  <!-- Antibióticos -->
+  <section class="product-grid" id="antibioticos">
+    <h2>Antibióticos</h2>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046873.png" alt="Amoxicilina">
+      <h3>Amoxicilina</h3>
+      <p><strong>Nombre científico:</strong> Amoxicillin</p>
+      <p>Tratamiento de infecciones bacterianas respiratorias y urinarias.</p>
+      <p><strong>Precio:</strong> $45.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046872.png" alt="Cefalexina">
+      <h3>Cefalexina</h3>
+      <p><strong>Nombre científico:</strong> Cephalexin</p>
+      <p>Antibiótico para infecciones de piel, vías urinarias y respiratorias.</p>
+      <p><strong>Precio:</strong> $52.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046849.png" alt="Azitromicina">
+      <h3>Azitromicina</h3>
+      <p><strong>Nombre científico:</strong> Azithromycin</p>
+      <p>Antibiótico de amplio espectro para infecciones respiratorias y de piel.</p>
+      <p><strong>Precio:</strong> $60.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <!-- ...continúa con imágenes alusivas para los demás productos... -->
+  </section>
+
+  <!-- Antigripales -->
+  <section class="product-grid" id="antigripales">
+    <h2>Antigripales</h2>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046865.png" alt="Next">
+      <h3>Next</h3>
+      <p><strong>Nombre científico:</strong> Paracetamol, Fenilefrina, Clorfenamina</p>
+      <p>Alivio de síntomas de gripe y resfriado común.</p>
+      <p><strong>Precio:</strong> $35.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046852.png" alt="Tabcin">
+      <h3>Tabcin</h3>
+      <p><strong>Nombre científico:</strong> Paracetamol, Fenilefrina, Clorfenamina</p>
+      <p>Alivio de fiebre, dolor y congestión nasal.</p>
+      <p><strong>Precio:</strong> $38.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046862.png" alt="Antiflu-Des">
+      <h3>Antiflu-Des</h3>
+      <p><strong>Nombre científico:</strong> Paracetamol, Loratadina</p>
+      <p>Alivio de síntomas de gripe y alergia.</p>
+      <p><strong>Precio:</strong> $40.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <!-- ...continúa con imágenes alusivas para los demás productos... -->
+  </section>
+
+  <!-- Vitaminas -->
+  <section class="product-grid" id="vitaminas">
+    <h2>Vitaminas</h2>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046847.png" alt="Redoxon">
+      <h3>Redoxon</h3>
+      <p><strong>Nombre científico:</strong> Ácido ascórbico (Vitamina C)</p>
+      <p>Refuerza el sistema inmunológico y previene resfriados.</p>
+      <p><strong>Precio:</strong> $40.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046860.png" alt="Centrum">
+      <h3>Centrum</h3>
+      <p><strong>Nombre científico:</strong> Multivitamínico</p>
+      <p>Suplemento completo de vitaminas y minerales.</p>
+      <p><strong>Precio:</strong> $60.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046855.png" alt="Supradyn">
+      <h3>Supradyn</h3>
+      <p><strong>Nombre científico:</strong> Multivitamínico</p>
+      <p>Complejo vitamínico para energía y vitalidad.</p>
+      <p><strong>Precio:</strong> $58.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <!-- ...continúa con imágenes alusivas para los demás productos... -->
+  </section>
+
+  <!-- Suplementos -->
+  <section class="product-grid" id="suplementos">
+    <h2>Suplementos</h2>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046867.png" alt="Ensure">
+      <h3>Ensure</h3>
+      <p><strong>Nombre científico:</strong> Suplemento nutricional</p>
+      <p>Suplemento para adultos mayores y personas convalecientes.</p>
+      <p><strong>Precio:</strong> $80.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046871.png" alt="Pediasure">
+      <h3>Pediasure</h3>
+      <p><strong>Nombre científico:</strong> Suplemento nutricional infantil</p>
+      <p>Suplemento para niños con necesidades nutricionales especiales.</p>
+      <p><strong>Precio:</strong> $90.00</p>
+      <button>Agregar al carrito</button>
+    </div>
+    <!-- ...continúa con imágenes alusivas para los demás productos... -->
+  </section>
+</div>
+    <!-- Aquí van las secciones de productos, como ya tienes en tu código... -->
+    <!-- ...existing product sections... -->
+    <!-- No se repiten aquí por espacio, pero mantén tus productos como ya los tienes -->
+  </div>
 
   <footer>
     <p>&copy; 2025 Farmacia Salud Total | Tel. 72 9805 4028 | contacto@saludtotal.com.mx</p>
   </footer>
   <script>
-  // Filtro de búsqueda en categorías y productos
-  document.querySelector('.search-bar input').addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    // Filtrar categorías
-    document.querySelectorAll('.category-list li').forEach(li => {
-      li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+    // Filtro de búsqueda en categorías y productos
+    document.getElementById('buscador').addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      document.querySelectorAll('.category-list li').forEach(li => {
+        li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
+      document.querySelectorAll('.product').forEach(prod => {
+        prod.style.display = prod.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
     });
-    // Filtrar productos (si tienes productos dinámicos)
+
+    // Animación de hover en productos y categorías
     document.querySelectorAll('.product').forEach(prod => {
-      prod.style.display = prod.textContent.toLowerCase().includes(query) ? '' : 'none';
+      prod.addEventListener('mouseenter', () => {
+        prod.style.transform = 'scale(1.04)';
+        prod.style.boxShadow = '0 8px 24px rgba(0,184,148,0.13)';
+      });
+      prod.addEventListener('mouseleave', () => {
+        prod.style.transform = 'scale(1)';
+        prod.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+      });
     });
-  });
+    document.querySelectorAll('.category-list li').forEach(cat => {
+      cat.addEventListener('mouseenter', () => {
+        cat.classList.add('active');
+      });
+      cat.addEventListener('mouseleave', () => {
+        cat.classList.remove('active');
+      });
+      cat.addEventListener('click', () => {
+        document.querySelectorAll('.category-list li').forEach(li => li.classList.remove('active'));
+        cat.classList.add('active');
+        const grid = document.getElementById(cat.dataset.cat);
+        if (grid) {
+          window.scrollTo({ top: grid.offsetTop - 20, behavior: 'smooth' });
+        }
+      });
+    });
 
-  // Animación de hover en productos y categorías
-  document.querySelectorAll('.product').forEach(prod => {
-    prod.addEventListener('mouseenter', () => {
-      prod.style.transform = 'scale(1.04)';
-      prod.style.boxShadow = '0 8px 24px rgba(0,0,0,0.13)';
+    // Notificación al agregar al carrito (simulada)
+    document.querySelectorAll('.product button').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const notif = document.createElement('div');
+        notif.className = 'notif';
+        notif.textContent = '¡Producto agregado al carrito!';
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 1700);
+      });
     });
-    prod.addEventListener('mouseleave', () => {
-      prod.style.transform = 'scale(1)';
-      prod.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
-    });
-  });
-  document.querySelectorAll('.category-list li').forEach(cat => {
-    cat.addEventListener('mouseenter', () => {
-      cat.style.background = '#b2dfdb';
-      cat.style.transform = 'scale(1.07)';
-    });
-    cat.addEventListener('mouseleave', () => {
-      cat.style.background = '#e0f2f1';
-      cat.style.transform = 'scale(1)';
-    });
-    // Scroll suave a productos de la categoría (si existieran)
-    cat.addEventListener('click', () => {
-      window.scrollTo({ top: document.querySelector('.product-grid')?.offsetTop || 0, behavior: 'smooth' });
-    });
-  });
 
-  // Notificación al agregar al carrito (simulada)
-  document.querySelectorAll('.product button').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      const notif = document.createElement('div');
-      notif.textContent = '¡Producto agregado al carrito!';
-      notif.style.position = 'fixed';
-      notif.style.top = '30px';
-      notif.style.right = '30px';
-      notif.style.background = '#00b894';
-      notif.style.color = '#fff';
-      notif.style.padding = '15px 25px';
-      notif.style.borderRadius = '8px';
-      notif.style.boxShadow = '0 4px 16px rgba(0,0,0,0.15)';
-      notif.style.zIndex = 9999;
-      notif.style.fontWeight = 'bold';
-      document.body.appendChild(notif);
-      setTimeout(() => notif.remove(), 1700);
+    // Modo oscuro
+    const darkBtn = document.getElementById('darkBtn');
+    let dark = false;
+    darkBtn.addEventListener('click', () => {
+      dark = !dark;
+      document.body.classList.toggle('dark', dark);
+      darkBtn.textContent = dark ? '☀️' : '🌙';
     });
-  });
 
-  // Modo oscuro
-  const darkBtn = document.createElement('button');
-  darkBtn.textContent = '🌙';
-  darkBtn.title = 'Modo oscuro';
-  darkBtn.style.background = 'none';
-  darkBtn.style.border = 'none';
-  darkBtn.style.fontSize = '1.5em';
-  darkBtn.style.cursor = 'pointer';
-  darkBtn.style.marginLeft = '10px';
-  document.querySelector('.icons').appendChild(darkBtn);
-
-  let dark = false;
-  darkBtn.addEventListener('click', () => {
-    dark = !dark;
-    document.body.style.background = dark ? '#222' : '#f4f4f4';
-    document.querySelector('header').style.background = dark ? '#222' : '#00796b';
-    document.querySelector('nav').style.background = dark ? '#111' : '#004d40';
-    document.querySelector('footer').style.background = dark ? '#111' : '#004d40';
-    document.querySelectorAll('.product').forEach(p => p.style.background = dark ? '#333' : '#fff');
-    document.querySelectorAll('.category-list li').forEach(li => li.style.background = dark ? '#263238' : '#e0f2f1');
-    document.querySelectorAll('.product, .category-list li').forEach(el => el.style.color = dark ? '#fff' : '#333');
-    document.querySelectorAll('.logo, .icons a, .form-footer, nav a, footer').forEach(el => el.style.color = dark ? '#fff' : '');
-    darkBtn.textContent = dark ? '☀️' : '🌙';
-  });
-</script>
+    // Animación de entrada para productos
+    document.querySelectorAll('.product').forEach((el, i) => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(30px)';
+      setTimeout(() => {
+        el.style.transition = 'all 0.6s cubic-bezier(.68,-0.55,.27,1.55)';
+        el.style.opacity = 1;
+        el.style.transform = 'translateY(0)';
+      }, 200 + i * 60);
+    });
+  </script>
 </body>
 </html>
