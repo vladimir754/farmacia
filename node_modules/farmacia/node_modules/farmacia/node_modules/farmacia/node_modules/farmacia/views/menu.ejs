@@ -284,7 +284,7 @@
     <a href="#">Medicamentos</a>
     <a href="#">Vitaminas</a>
     <a href="#">Cuidado personal</a>
-    <a href="#">Promociones</a>
+    <a href="/promociones">Promociones</a>
     <a href="/contacto">Contacto</a>
   </nav>
 
@@ -457,28 +457,31 @@
     <p>&copy; 2025 Farmacia Salud Total | Tel. 72 9805 4028 | contacto@saludtotal.com.mx</p>
   </footer>
 <script>
-  // Obtener botón modo oscuro
+// Referencia al botón modo oscuro
   const darkBtn = document.getElementById('darkBtn');
 
-  // Estado inicial modo oscuro
-  let dark = localStorage.getItem('modo-oscuro') === 'true';
-
-  // Aplicar modo oscuro si estaba activo
-  if (dark) {
-    document.body.classList.add('dark');
-    darkBtn.textContent = '☀️';
-  } else {
-    darkBtn.textContent = '🌙';
+  // Función para aplicar el modo oscuro según el estado
+  function aplicarModoOscuro(activar) {
+    document.body.classList.toggle('dark', activar);
+    darkBtn.textContent = activar ? '☀️' : '🌙';
   }
 
-  // Toggle modo oscuro
-  darkBtn.addEventListener('click', () => {
-    dark = !dark;
-    document.body.classList.toggle('dark', dark);
-    darkBtn.textContent = dark ? '☀️' : '🌙';
-    localStorage.setItem('modo-oscuro', dark);
+    // Al cargar la página, leemos la preferencia guardada en localStorage y la aplicamos
+  window.addEventListener('DOMContentLoaded', () => {
+    const modoGuardado = localStorage.getItem('modoOscuro'); // 'true' o 'false'
+    const modoActivo = modoGuardado === 'true';
+    aplicarModoOscuro(modoActivo);
   });
 
+  // Escuchar click en el botón para cambiar modo oscuro y guardar preferencia
+  darkBtn.addEventListener('click', () => {
+    const modoActual = document.body.classList.contains('dark');
+    const modoNuevo = !modoActual;
+    aplicarModoOscuro(modoNuevo);
+
+    // Guardar preferencia en localStorage
+    localStorage.setItem('modoOscuro', modoNuevo.toString());
+  });
   // Solo letras para el buscador
   function soloLetras(input) {
     input.value = input.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');

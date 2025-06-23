@@ -79,6 +79,12 @@ app.get('/contacto', (req, res) => {
   res.render('contacto');
 });
 
+
+//promociones 
+app.get('/promociones', (req,res)=>{
+  res.render('promociones');
+});
+
 app.get('/perfil', isAuth, (req, res) => {
   const correo = req.session.usuario;
   db.query('SELECT * FROM usuarios WHERE correo = ?', [correo], (err, results) => {
