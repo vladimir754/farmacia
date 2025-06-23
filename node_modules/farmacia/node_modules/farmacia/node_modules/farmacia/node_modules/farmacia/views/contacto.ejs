@@ -12,6 +12,10 @@
       margin: 0;
       padding: 0;
     }
+    body.dark {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
     header {
       background: #00796b;
       color: white;
@@ -112,6 +116,19 @@
     <p>&copy; 2025 Farmacia Salud Total | Tel. 72 9805 4028 | contacto@saludtotal.com.mx</p>
   </footer>
   <script>
+      // Al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    // Aplicar modo oscuro o claro según localStorage
+    const modoGuardado = localStorage.getItem('modoOscuro');
+    if (modoGuardado === 'true') {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+ } );
+
+
+
     // Animación de entrada para el contenedor
     const cont = document.querySelector('.container');
     cont.style.opacity = 0;

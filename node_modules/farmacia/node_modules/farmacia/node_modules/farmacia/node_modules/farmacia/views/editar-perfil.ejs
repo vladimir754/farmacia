@@ -20,6 +20,10 @@
       padding: 20px;
       overflow-y: auto;
     }
+    body.dark {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
 
     .form-container {
       background: #fff;
@@ -197,6 +201,16 @@
   </div>
 
   <script>
+
+         // Aplicar modo oscuro o claro según localStorage
+  window.addEventListener('DOMContentLoaded', () => {
+    const modoGuardado = localStorage.getItem('modoOscuro');
+    if (modoGuardado === 'true') {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+    });
     // Mostrar/ocultar contraseña con canvas
     function drawEye(canvas, closed = false) {
       const ctx = canvas.getContext('2d');
