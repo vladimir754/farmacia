@@ -24,10 +24,10 @@ app.use(session({
 
 // Conexión MySQL
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'farmacia'
+  host: 'sql5.freesqldatabase.com',
+  user: 'sql5786553',
+  password: 'jS2ldISrE4',
+  database: 'sql5786553'
 });
 
 db.connect(err => {
@@ -35,7 +35,7 @@ db.connect(err => {
     console.error('❌ Error conectando a la base de datos:', err);
     process.exit(1);
   }
-  console.log('✅ Conectado a la base de datos MySQL');
+  console.log('✅ Conectado a la base de datos en Linea');
 });
 
 // Configuración de multer para la carga de imágenes
