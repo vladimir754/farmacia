@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
 const path = require('path');
 const mysql = require('mysql');
 const session = require('express-session');
 const multer = require('multer');
-
+const PORT = process.env.PORT || 4000;
 
 // Middleware global
 app.use(express.urlencoded({ extended: true }));
@@ -60,6 +59,11 @@ function isAuth(req, res, next) {
 }
 
 // === RUTAS GET ===
+app.get('/', (req, res) => {
+  res.redirect('/sesion'); // o renderiza una vista, si tienes una
+});
+
+
 app.get('/sesion', (req, res) => {
   res.render('sesion', { mensaje: null });
 });
@@ -226,9 +230,7 @@ app.post('/enviar-contacto', (req, res) => {
 
 // === Servidor en ejecución ===
 
-
-
 app.listen(PORT, () => {
-  console.log(`🚀Servidor corriendo en puerto ${PORT}`);
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
 
