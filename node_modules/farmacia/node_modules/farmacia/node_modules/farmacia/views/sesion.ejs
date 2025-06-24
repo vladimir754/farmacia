@@ -171,6 +171,8 @@
       alert('El campo usuario no puede exceder los 50 caracteres.');
       return false;
     }
+    
+
 
     if (!emailRegex.test(usuario) && !telefonoRegex.test(usuario)) {
       alert('Por favor, ingresa un correo electrónico válido o un número de teléfono de 10 dígitos.');
@@ -181,6 +183,10 @@
       alert('La contraseña no puede exceder los 50 caracteres.');
       return false;
     }
+    if (password.length < 6) {
+  alert('La contraseña debe tener al menos 6 caracteres.');
+  return false;
+}
 
     return true;
   }
