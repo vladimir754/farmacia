@@ -1,10 +1,11 @@
 const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
 const path = require('path');
 const mysql = require('mysql');
 const session = require('express-session');
 const multer = require('multer');
 
-const app = express();
 
 // Middleware global
 app.use(express.urlencoded({ extended: true }));
@@ -224,7 +225,10 @@ app.post('/enviar-contacto', (req, res) => {
 });
 
 // === Servidor en ejecución ===
-const PORT = 4000;
+
+
+
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}/sesion`);
+  console.log(`🚀Servidor corriendo en puerto ${PORT}`);
 });
+
